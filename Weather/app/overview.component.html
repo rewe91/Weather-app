@@ -1,0 +1,12 @@
+<h2> Current Weather </h2>
+<div class="searchweather">
+    <input type="text" name="search" placeholder="Location" [(ngModel)]="searchCity" (ngModelChange)="onModelChange()">
+</div>
+
+<table id="weatherresult" *ngIf="cities">
+    
+    <tr *ngFor="let city of cities">
+    <td><a [routerLink]="['/detail', city.id]"> {{ city.nm }}</a></td>
+           
+     </tr>
+</table>

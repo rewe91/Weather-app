@@ -1,0 +1,85 @@
+<h1 *ngIf="weather">{{weather.name}}</h1>
+  <h1>Current Weather in the world</h1>
+  <!--Skapar tabeller samt deklarerar vilken data som skall hämtas från apiet-->
+  <table>
+    <tr>
+      <td>Time and Date</td>
+      <td>{{ weather.dt * 1000 | date:'dd MMM HH:mm:ss' }}</td>
+   </tr>
+    <tr>
+      <td>Temperature (C):</td>
+      <td>{{ (weather.main.temp - 273.15).toFixed(2) }} C</td>
+    </tr>
+
+    <tr>
+      <td>Temperature (F):</td>
+      <td>{{ (weather.main.temp - 273.15).toFixed(2) | tempConverter: 'F' }} F</td>
+    </tr>
+
+    <tr>
+      <td>Conditions:</td>
+      <td>{{ weather.weather[0].description }}</td>
+    </tr>
+    <tr>
+        <td>Clouds</td>
+        <td>{{ weather.clouds.all }} % </td>
+    </tr>
+    <tr>
+      <td>Sunrise:</td>
+      <td>{{ weather.sys.sunrise * 1000 | date:'HH:mm:ss'}}</td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td>Sunset:</td>
+      <td>{{ weather.sys.sunset * 1000 | date:'HH:mm:ss'}}</td>
+    </tr>
+    <tr>
+    <td>Wind:</td>
+    <td>{{ weather.wind.speed }} m/s</td>  
+    </tr> 
+    <tr>
+      <td>Snow</td>
+      <td>{{ weather.snow }} </td>
+    </tr>
+
+    <tr>
+      <td> Rain</td>
+      <td *ngIf="weather.rain; else elseBlock">  {{ weather.rain["3h"] }}</td>
+      <ng-template #elseBlock>0</ng-template>
+    </tr>
+    <tr>
+      <td>Humidity</td>
+      <td>{{ weather.main.humidity }} %</td>
+    </tr>
+<!--Skapar tabeller för min forecast samt vilka attribut som skall presenterars i forecasten-->
+<table *ngIf="forecast">
+  <tr>
+    <th>Date Time</th>
+    
+    <th>Temerature</th>
+
+    <th>Wind Speed</th>
+
+    <th>Humidity</th>
+
+ 
+  </tr>
+  <tr *ngFor="let lista of forecast">
+  
+    
+    <td>{{ lista.dt * 1000 | date:'dd MMM HH:mm:ss' }}</td>
+
+    <td>{{ (lista.main.temp - 273.15).toFixed(2) }}°C</td>
+  
+    <td>{{ lista.wind.speed }} m/s</td>
+
+    <td>{{ weather.main.humidity }} %</td>
+
+
+
+   
+  </tr>
+
+
+</table>
