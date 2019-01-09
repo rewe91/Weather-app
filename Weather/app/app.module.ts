@@ -10,7 +10,7 @@ import { OverviewComponent } from './overview.component';
 import { DetailComponent } from './detail.component';
 import { TempConverter } from './tempconverter.pipe';
 
-// importerar och deklarerar samtligt filer.
+// importerar och deklarerar samtliga filer.
 
 @NgModule({
   declarations: [
